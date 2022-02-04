@@ -2,7 +2,6 @@ import {
     Box,
     Button,
     Checkbox,
-    Container,
     FormControlLabel,
     Grid,
     Link,
@@ -27,60 +26,67 @@ export default function Login() {
     };
 
     return (
-        <Container
-            component="main"
-            maxWidth="xs"
-            style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
+        <Grid
+            sx={{
+                maxWidth: "xs",
+                minHeight: "95vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
             }}
         >
             <Box
                 sx={{
                     display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
+                    justifyContent: "center",
                 }}
             >
                 <Box component="form" onSubmit={handleSubmit} noValidate>
-                    <TextField
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        required
-                        fullWidth
-                        autoFocus
-                        value={email}
-                        onChange={(event) => {
-                            setEmail(event.target.value);
-                        }}
-                    />
-                    <TextField
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        margin="normal"
-                        required
-                        fullWidth
-                        value={password}
-                        onChange={(event) => {
-                            setPassword(event.target.value);
-                        }}
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
+                    <Grid item xs>
+                        <TextField
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            required
+                            fullWidth
+                            autoFocus
+                            value={email}
+                            onChange={(event) => {
+                                setEmail(event.target.value);
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs>
+                        <TextField
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                            margin="normal"
+                            required
+                            fullWidth
+                            value={password}
+                            onChange={(event) => {
+                                setPassword(event.target.value);
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs>
+                        <FormControlLabel
+                            control={
+                                <Checkbox value="remember" color="primary" />
+                            }
+                            label="Remember me"
+                        />
+                    </Grid>
+
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{ mt: 2, mb: 2 }}
                     >
                         Sign In
                     </Button>
@@ -90,7 +96,7 @@ export default function Login() {
                                 Forgot password?
                             </Link>
                         </Grid>
-                        <Grid item>
+                        <Grid item xs>
                             <Link href="/Register" variant="body2">
                                 {"Don't have an account? Sign Up"}
                             </Link>
@@ -98,6 +104,6 @@ export default function Login() {
                     </Grid>
                 </Box>
             </Box>
-        </Container>
+        </Grid>
     );
 }
