@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Link, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
@@ -7,27 +7,29 @@ export default function Register() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [emailError, setEmailError] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const emailRegex =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (email === "" || emailRegex.test(email)) {
+            setEmailError(false);
+        } else {
+            setEmailError(true);
+        }
+    }, [email]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        localStorage.setItem("First Name:", firstName);
-        localStorage.setItem("Last Name", lastName);
-        localStorage.setItem("Email", email);
-        localStorage.setItem("Password", password);
-        navigate("/");
-
-        console.log(
-            "First name:",
-            firstName,
-            "Last name:",
-            lastName,
-            "email:",
-            email,
-            "password:",
-            password
-        );
+        if (emailError === false) {
+            localStorage.setItem("First Name:", firstName);
+            localStorage.setItem("Last Name", lastName);
+            localStorage.setItem("Email", email);
+            localStorage.setItem("Password", password);
+            navigate("/");
+        }
     };
 
     return (
@@ -46,7 +48,7 @@ export default function Register() {
                     justifyContent: "center",
                 }}
             >
-                <Box component="form" onSubmit={handleSubmit} noValidate>
+                <Box component="form" onSubmit={handleSubmit}>
                     <Grid container>
                         <Grid item xs>
                             <TextField
@@ -91,6 +93,7 @@ export default function Register() {
                             onChange={(event) => {
                                 setEmail(event.target.value);
                             }}
+                            error={emailError}
                         />
                     </Grid>
                     <Grid item xs>

@@ -7,22 +7,52 @@ import {
     Link,
     TextField,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [rememberSelected, setRememberSelected] = useState(false);
+    const [emailError, setEmailError] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        localStorage.setItem("Remember me", false);
+    }, []);
+
+    useEffect(() => {
+        const emailRegex =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (email === "" || emailRegex.test(email)) {
+            setEmailError(false);
+        } else {
+            setEmailError(true);
+        }
+    }, [email]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        localStorage.setItem("Email", email);
-        localStorage.setItem("Password", password);
-        navigate("/Blog");
+        if (emailError === false) {
+            localStorage.setItem("Email", email);
+            localStorage.setItem("Password", password);
+            navigate("/Blog");
+        }
+    };
 
-        console.log("email:", email, "password:", password);
+    const handleEmail = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const rememberChange = () => {
+        if (rememberSelected === false) {
+            setRememberSelected(true);
+            localStorage.setItem("Remember me", true);
+        } else {
+            setRememberSelected(false);
+            localStorage.setItem("Remember me", false);
+        }
     };
 
     return (
@@ -41,23 +71,23 @@ export default function Login() {
                     justifyContent: "center",
                 }}
             >
-                <Box component="form" onSubmit={handleSubmit} noValidate>
-                    <Grid item xs>
+                <Box component="form" onSubmit={handleSubmit}>
+                    <Grid item>
                         <TextField
                             id="email"
                             label="Email Address"
                             name="email"
                             autoComplete="email"
+                            type="email"
                             required
                             fullWidth
                             autoFocus
                             value={email}
-                            onChange={(event) => {
-                                setEmail(event.target.value);
-                            }}
+                            onChange={handleEmail}
+                            error={emailError}
                         />
                     </Grid>
-                    <Grid item xs>
+                    <Grid item>
                         <TextField
                             name="password"
                             label="Password"
@@ -73,10 +103,14 @@ export default function Login() {
                             }}
                         />
                     </Grid>
-                    <Grid item xs>
+                    <Grid item>
                         <FormControlLabel
                             control={
-                                <Checkbox value="remember" color="primary" />
+                                <Checkbox
+                                    value={true}
+                                    color="primary"
+                                    onChange={rememberChange}
+                                />
                             }
                             label="Remember me"
                         />
@@ -91,13 +125,9 @@ export default function Login() {
                         Sign In
                     </Button>
                     <Grid container>
+                     
                         <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
-                        <Grid item xs>
-                            <Link href="/Register" variant="body2">
+                            <Link marginX={10} href="/Register" variant="body2">
                                 Don't have an account? Sign Up
                             </Link>
                         </Grid>
