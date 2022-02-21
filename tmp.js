@@ -31,3 +31,14 @@ const drawerWidth = 140;
         ))}
     </List>
 </Drawer>;
+
+const renderPost = () => {
+    const postList = [someTxt];
+    return (
+        <ListItem>
+            {postList.map((post, index) => (
+                <ListItemText key={index}>{post}</ListItemText>
+            ))}
+        </ListItem>
+    );
+};
