@@ -37,7 +37,7 @@ export default function Login() {
         if (emailError === false) {
             localStorage.setItem("Email", email);
             localStorage.setItem("Password", password);
-            navigate("/Blog");
+            navigate("/Home");
         }
     };
 

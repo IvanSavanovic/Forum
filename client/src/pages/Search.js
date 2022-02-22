@@ -22,7 +22,7 @@ export default function Search() {
             <Button
                 type="submit"
                 variant="contained"
-                sx={{ ml: 0.5 }}
+                sx={{ ml: 0.5, mt: 0.2 }}
                 value={search}
                 onClick={updateSearch}
             >

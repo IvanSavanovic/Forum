@@ -32,6 +32,8 @@ const drawerWidth = 140;
     </List>
 </Drawer>;
 
+const someTxt = "Category";
+
 const renderPost = () => {
     const postList = [someTxt];
     return (

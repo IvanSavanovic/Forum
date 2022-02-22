@@ -1,4 +1,11 @@
-import { Button, Grid, Menu, MenuItem } from "@mui/material";
+import {
+    Avatar,
+    Grid,
+    IconButton,
+    Menu,
+    MenuItem,
+} from "@mui/material";
+import { blue } from "@mui/material/colors";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +33,7 @@ export default function MenuButton() {
 
     return (
         <Grid>
-            <Button
+            <IconButton
                 variant="contained"
                 id="menu-button"
                 aria-controls={open ? "basic-menu" : undefined}
@@ -34,8 +41,8 @@ export default function MenuButton() {
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
             >
-                Menu
-            </Button>
+                <Avatar sx={{ width: 28, height: 28, bgcolor: blue[500] }}/>
+            </IconButton>
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
