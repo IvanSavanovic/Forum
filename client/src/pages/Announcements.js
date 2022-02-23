@@ -35,9 +35,7 @@ export default function Announcements() {
     };
 
     const renderPost = () => {
-        console.log();
-
-        return (
+          return (
             <List sx={{ bgcolor: "#a0a0a00f" }}>
                 {posts.map((post, i) => (
                     <ListItem key={i}>

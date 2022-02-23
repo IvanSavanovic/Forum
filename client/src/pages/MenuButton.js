@@ -1,10 +1,4 @@
-import {
-    Avatar,
-    Grid,
-    IconButton,
-    Menu,
-    MenuItem,
-} from "@mui/material";
+import { Avatar, Grid, IconButton, Menu, MenuItem } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,12 +17,12 @@ export default function MenuButton() {
     };
 
     function logout() {
-        if (rememberMe === false) {
-            return;
+        if (rememberMe === "true") {
+            navigate("/");
         } else {
             localStorage.clear();
+            navigate("/");
         }
-        navigate("/");
     }
 
     return (
@@ -41,7 +35,7 @@ export default function MenuButton() {
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
             >
-                <Avatar sx={{ width: 28, height: 28, bgcolor: blue[500] }}/>
+                <Avatar sx={{ width: 28, height: 28, bgcolor: blue[500] }} />
             </IconButton>
             <Menu
                 id="basic-menu"
