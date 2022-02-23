@@ -11,7 +11,7 @@ export default function NewPost(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.addPost({title: title, text: text})
+        props.addPost({title: title, text: text, location: props.location})
         handleClose()
     };
 

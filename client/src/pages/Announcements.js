@@ -96,7 +96,7 @@ export default function Announcements() {
                                         Announcements
                                     </Typography>
                                 </ListItemText>
-                                <NewPost addPost={addPost} />
+                                <NewPost addPost={addPost} location="/Announcements" />
                             </ListItem>
                         </Grid>
                         <Grid item>{renderPost()}</Grid>
