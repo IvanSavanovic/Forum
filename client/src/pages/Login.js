@@ -19,6 +19,10 @@ export default function Login() {
 
     useEffect(() => {
         localStorage.setItem("Remember me", false);
+        if(localStorage.getItem("Email") && localStorage.getItem("Password")){
+            setEmail(localStorage.getItem("Email"))
+            setPassword(localStorage.getItem("Password"))
+        }
     }, []);
 
     useEffect(() => {
