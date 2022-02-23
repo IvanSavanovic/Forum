@@ -18,15 +18,15 @@ export default function Categories() {
     };
 
     const handleGeneralDiscussion = () => {
-        navigate("/");
+        navigate("#");
     };
 
     const handleCommentsFeedback = () => {
-        navigate("/");
+        navigate("#");
     };
 
     return (
-        <List sx={{ ml: 3 }}>
+        <List>
             <ListItemButton
                 sx={{ paddingTop: 3, paddingBottom: 3 }}
                 onClick={handleAnnouncements}

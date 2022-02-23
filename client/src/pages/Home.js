@@ -1,33 +1,20 @@
-import { AppBar, Box, Fab, Grid, Toolbar, Typography } from "@mui/material";
+import { Box, Fab, Grid, Toolbar } from "@mui/material";
 import React from "react";
 import ScrollToTop from "./ScrollToTop";
-import MenuButton from "./MenuButton";
-import Search from "./Search";
+
 import Categories from "./Categories";
 import Footer from "./Footer";
+import Header from "./Header";
 
 export default function Home() {
     return (
         <Grid sx={{ maxWidth: "xs", minHeight: "95vh" }}>
             <Box sx={{ display: "flex" }}>
-                <Grid sx={{ flexDirection: "row" }}>
-                    <AppBar color="default">
-                        <Toolbar>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Typography variant="h4">
-                                        Simple forum application
-                                    </Typography>
-                                </Grid>
-                                <Grid item sx={{ mt: 0.5 }}>
-                                    <Search />
-                                </Grid>
-                                <Grid item sx={{ ml: 1 }}>
-                                    <MenuButton />
-                                </Grid>
-                            </Grid>
-                        </Toolbar>
-                    </AppBar>
+                <Grid
+                    component="header-container"
+                    sx={{ flexDirection: "row" }}
+                >
+                    <Header />
                 </Grid>
                 <Box
                     component="main"
@@ -42,6 +29,7 @@ export default function Home() {
                         </Grid>
                     </Grid>
                     <Grid
+                        component="footer-container"
                         sx={{
                             flexDirection: "column",
                             maxWidth: "100vw",
