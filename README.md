@@ -1,3 +1,3 @@
 # Forum
 
-Front-end forum application created using React.
+Front-end of forum application created using React.
